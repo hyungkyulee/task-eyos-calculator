@@ -3,10 +3,10 @@
 ## instruction
 Consider an expression with the following form:
 
-ELEM = 0 | 1 | 2 ... 9 | 10 | 11 ...
-ADD = ( EXPR + EXPR + ... + EXPR )
-MULT = ( EXPR * EXPR * ... * EXPR )
-EXPR = ELEM | ADD | MULT
+- ELEM = 0 | 1 | 2 ... 9 | 10 | 11 ...
+- ADD = ( EXPR + EXPR + ... + EXPR )
+- MULT = ( EXPR * EXPR * ... * EXPR )
+- EXPR = ELEM | ADD | MULT
 
 So these are all valid expressions:
 
@@ -19,10 +19,10 @@ Your task is to write a CLI program that, given an expression of the above form,
 
 For example:
 
-1 -> 1
-(1+1) -> 2
-(1+2+1) -> 4
-((1+2+1)*(1+1)) -> 8
+- 1 -> 1
+- (1+1) -> 2
+- (1+2+1) -> 4
+- ((1+2+1)*(1+1)) -> 8
 
 To make things easier:
 

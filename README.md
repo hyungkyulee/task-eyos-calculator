@@ -1,4 +1,4 @@
-# task-eyos-calculator
+# task-eyos-evaluator
 
 ## instruction
 Consider an expression with the following form:

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "AZzphRceltnxquzJ91wNgu4J6t0ZhiUJDToWBhD4zBaZfHoyZ2k/QskBLq7ur5JxZXpNmhHHiO4nmPM7MPGvgw==",
+  "success": true,
+  "projectFilePath": "/Users/albert/_ref/interview/task-eyos-evaluator/ExpressionEvaluator/ExpressionEvaluator/ExpressionEvaluator.csproj",
+  "expectedPackageFiles": [
+    "/Users/albert/.nuget/packages/microsoft.aspnetcore.app.ref/3.1.10/microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
+  ],
+  "logs": []
+}

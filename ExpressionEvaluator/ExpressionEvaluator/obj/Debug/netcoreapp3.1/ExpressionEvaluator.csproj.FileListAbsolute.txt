@@ -1,0 +1,12 @@
+/Users/albert/_ref/interview/task-eyos-evaluator/ExpressionEvaluator/ExpressionEvaluator/bin/Debug/netcoreapp3.1/ExpressionEvaluator.deps.json
+/Users/albert/_ref/interview/task-eyos-evaluator/ExpressionEvaluator/ExpressionEvaluator/bin/Debug/netcoreapp3.1/ExpressionEvaluator.runtimeconfig.json
+/Users/albert/_ref/interview/task-eyos-evaluator/ExpressionEvaluator/ExpressionEvaluator/bin/Debug/netcoreapp3.1/ExpressionEvaluator.runtimeconfig.dev.json
+/Users/albert/_ref/interview/task-eyos-evaluator/ExpressionEvaluator/ExpressionEvaluator/bin/Debug/netcoreapp3.1/ExpressionEvaluator.dll
+/Users/albert/_ref/interview/task-eyos-evaluator/ExpressionEvaluator/ExpressionEvaluator/bin/Debug/netcoreapp3.1/ExpressionEvaluator.pdb
+/Users/albert/_ref/interview/task-eyos-evaluator/ExpressionEvaluator/ExpressionEvaluator/obj/Debug/netcoreapp3.1/ExpressionEvaluator.csprojAssemblyReference.cache
+/Users/albert/_ref/interview/task-eyos-evaluator/ExpressionEvaluator/ExpressionEvaluator/obj/Debug/netcoreapp3.1/ExpressionEvaluator.AssemblyInfoInputs.cache
+/Users/albert/_ref/interview/task-eyos-evaluator/ExpressionEvaluator/ExpressionEvaluator/obj/Debug/netcoreapp3.1/ExpressionEvaluator.AssemblyInfo.cs
+/Users/albert/_ref/interview/task-eyos-evaluator/ExpressionEvaluator/ExpressionEvaluator/obj/Debug/netcoreapp3.1/ExpressionEvaluator.csproj.CoreCompileInputs.cache
+/Users/albert/_ref/interview/task-eyos-evaluator/ExpressionEvaluator/ExpressionEvaluator/obj/Debug/netcoreapp3.1/ExpressionEvaluator.dll
+/Users/albert/_ref/interview/task-eyos-evaluator/ExpressionEvaluator/ExpressionEvaluator/obj/Debug/netcoreapp3.1/ExpressionEvaluator.pdb
+/Users/albert/_ref/interview/task-eyos-evaluator/ExpressionEvaluator/ExpressionEvaluator/obj/Debug/netcoreapp3.1/ExpressionEvaluator.genruntimeconfig.cache

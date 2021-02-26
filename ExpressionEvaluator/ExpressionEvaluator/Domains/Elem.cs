@@ -8,9 +8,10 @@ namespace ExpressionEvaluator.Domains
         public Elem(string input)
         {
             var totalNumber = 0;
-            for (int i = 0; i < input.Length; i++)
+            var cleanedInput = input.Trim();
+            for (int i = 0; i < cleanedInput.Length; i++)
             {
-                totalNumber += ParseNumber(input[i]) * (int)Math.Pow(10, input.Length-i-1);
+                totalNumber += ParseNumber(cleanedInput[i]) * (int)Math.Pow(10, cleanedInput.Length-i-1);
             }
 
             Number = totalNumber;
@@ -18,10 +19,11 @@ namespace ExpressionEvaluator.Domains
 
         private static int ParseNumber(char input)
         {
-            var number = 0;
+            var number = -1;
             switch (input)
             {
                 case '0':
+                    number = 0;
                     break;
                 case '1':
                     number = 1;

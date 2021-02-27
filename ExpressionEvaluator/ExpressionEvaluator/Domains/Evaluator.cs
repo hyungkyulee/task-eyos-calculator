@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,20 +8,31 @@ namespace ExpressionEvaluator.Domains
     {
         public int Evaluate(string input)
         {
-            if (input.Contains("+"))
+            if (!input.Contains("+") &&
+                !input.Contains("*"))
             {
-                var numbers = input.Split("+");
-                return Add(numbers.Select(x => new Elem(x)));
+                var element = new Elem(input);
+                return element.Number;
             }
 
-            if (input.Contains("*"))
+            // var delimiters = new string[] {"+", "*", "(", ")"};
+
+            var addExpressions = input.Split("+");
+            var elements = new List<string>();
+            var result = 0;
+            foreach (var expression in addExpressions)
             {
-                var numbers = input.Split("*");
-                return Multiply(numbers.Select(x => new Elem(x)));
+                if (!expression.Contains("*"))
+                {
+                    elements.Add(expression);
+                    continue;
+                }
+                
+                var multiplyExpressions = expression.Split("*");
+                result += Multiply(multiplyExpressions.Select(x => new Elem(x)));
             }
 
-            var elem = new Elem(input);
-            return elem.Number;
+            return result + Add(elements.Select(x => new Elem(x)));
         }
 
         private int Multiply(IEnumerable<Elem> elements)

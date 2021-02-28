@@ -9,18 +9,6 @@ namespace ExpressionEvaluator.Domains
     {
         public int Handle(string input)
         {
-            // if (!input.Contains("+") &&
-            //     !input.Contains("*") &&
-            //     !input.Contains("(") &&
-            //     !input.Contains(")"))
-            // {
-            //     var element = new Elem(input);
-            //     return element.Number;
-            // }
-
-            // var simplifiedExpression = CalculateNumbersInParentheses(input);
-            // return ParseExpr(simplifiedExpression);
-
             var expressions = ParseExpr(input);
             var result = 0;
             foreach (var expression in expressions)
@@ -31,82 +19,32 @@ namespace ExpressionEvaluator.Domains
             return result;
         }
 
-        private string CalculateNumbersInParentheses(string input)
-        {
-            var inputString = input;
-            while (true)
-            {
-                var pattern = @"\([\d\s\*\+]+\)";
-                var regEx = new Regex(pattern);
-                var bracketExpressions = regEx.Matches(inputString);
-
-                if (bracketExpressions.Count == 0)
-                {
-                    break;
-                }
-
-                var delimiters = new char[] {'(', ')'};
-                
-                foreach (Match expression in bracketExpressions)
-                {
-                    var braketResult = ParseExpr(expression.Value.Trim(delimiters)).ToString();
-                    inputString = inputString.Replace(expression.Value, braketResult);
-                }
-            }
-
-            return inputString;
-        }
-
         private IEnumerable<IExpr> ParseExpr(string input)
         {
             var expressions = new List<IExpr>();
+            var inputSimplified = input;
             
+            if (input.Contains("(") ||
+                input.Contains(")"))
+            { 
+                inputSimplified = SimplifyParentheses(input);   
+            }
             
-            if (!input.Contains("+") &&
-                !input.Contains("*") &&
-                !input.Contains("(") &&
-                !input.Contains(")"))
+            if (!inputSimplified.Contains("+") &&
+                !inputSimplified.Contains("*") &&
+                !inputSimplified.Contains("(") &&
+                !inputSimplified.Contains(")"))
             {
-                expressions.Add(new Elem(input));
+                expressions.Add(new Elem(inputSimplified));
             }
 
-            // it would be better to make it an eraser method.
-            var inputSimplified = SimplifyParentheses(input);
-
-            expressions = ParseAddMultiply(inputSimplified);
-            
-            // if (input.Contains("+"))
-            // {
-            //     var stringExpressions = input.Split("+");
-            //     var addElements = stringExpressions.Select(x => new Elem(x));
-            //
-            //     elements.Add(new Add(addElements));
-            // }
-            //
-            // if (input.Contains("*"))
-            // {
-            //     var stringExpressions = input.Split("*");
-            //     var multElements = stringExpressions.Select(x => new Elem(x));
-            //
-            //     elements.Add(new Multiply(multElements));
-            // }
+            if (input.Contains("+") ||
+                input.Contains("*"))
+            {
+                expressions.AddRange(ParseAddMultiply(inputSimplified));
+            }
 
             return expressions;
-            // var elements = new List<string>();
-            // var result = 0;
-            // foreach (var expression in stringExpressions)
-            // {
-            //     if (!expression.Contains("*"))
-            //     {
-            //         elements.Add(expression);
-            //         continue;
-            //     }
-            //
-            //     var multiplyExpressions = expression.Split("*");
-            //     result += Multiply(multiplyExpressions.Select(x => new Elem(x)));
-            // }
-            //
-            // return result + Add(elements.Select(x => new Elem(x)));
         }
 
         private static string SimplifyParentheses(string input)

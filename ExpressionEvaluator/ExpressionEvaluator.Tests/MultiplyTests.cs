@@ -22,7 +22,7 @@ namespace ExpressionEvaluator.Tests
             var input = "1 *2*3 * 4 *5";
 
             // act
-            var result = _evaluator.Evaluate(input);
+            var result = _evaluator.Handle(input);
 
             // assert
             Assert.That(result, Is.EqualTo(120));

@@ -2,7 +2,7 @@ using System;
 
 namespace ExpressionEvaluator.Domains
 {
-    public class Elem
+    public class Elem : IExpr
     {
         public int Number { get; }
         public Elem(string input)
@@ -55,6 +55,11 @@ namespace ExpressionEvaluator.Domains
             }
 
             return number;
+        }
+
+        public int Evaluate()
+        {
+            return Number;
         }
     }
 }

@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace ExpressionEvaluator.Tests
 {
-    public class Tests
+    public class ElementTests
     {
         private Evaluator _evaluator;
 
@@ -17,7 +17,7 @@ namespace ExpressionEvaluator.Tests
         [Test]
         public void Should_evaluate_single_digit_number()
         {
-            var result = _evaluator.Evaluate("1");
+            var result = _evaluator.Handle("1");
             
             Assert.That(result, Is.EqualTo(1));
         }
@@ -25,7 +25,7 @@ namespace ExpressionEvaluator.Tests
         [Test]
         public void Should_evaluate_double_digit_number()
         {
-            var result = _evaluator.Evaluate("11");
+            var result = _evaluator.Handle("11");
             
             Assert.That(result, Is.EqualTo(11));
         }

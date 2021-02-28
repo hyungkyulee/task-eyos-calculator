@@ -7,88 +7,103 @@ namespace ExpressionEvaluator.Domains
 {
     public class Evaluator
     {
-        public int Evaluate(string input)
+        public int Handle(string input)
         {
-            if (!input.Contains("+") &&
-                !input.Contains("*") &&
-                !input.Contains("(") &&
-                !input.Contains(")"))
+            var expressions = ParseExpr(input);
+            var result = 0;
+            foreach (var expression in expressions)
             {
-                var element = new Elem(input);
-                return element.Number;
+                result += expression.Evaluate();
             }
 
-            var updatedExpression = "";
-            
-            updatedExpression = HighOrderBracketOperation(input);
-
-            return MixedOperation(updatedExpression);
+            return result;
         }
 
-        private string HighOrderBracketOperation(string input)
+        private IEnumerable<IExpr> ParseExpr(string input)
         {
+            var expressions = new List<IExpr>();
+            var inputSimplified = input;
+            
+            if (input.Contains("(") ||
+                input.Contains(")"))
+            { 
+                inputSimplified = SimplifyParentheses(input);   
+            }
+            
+            if (!inputSimplified.Contains("+") &&
+                !inputSimplified.Contains("*") &&
+                !inputSimplified.Contains("(") &&
+                !inputSimplified.Contains(")"))
+            {
+                expressions.Add(new Elem(inputSimplified));
+            }
+
+            if (input.Contains("+") ||
+                input.Contains("*"))
+            {
+                expressions.AddRange(ParseAddMultiply(inputSimplified));
+            }
+
+            return expressions;
+        }
+
+        private static string SimplifyParentheses(string input)
+        {
+            var simplifiedString = input;
+            var bracketSigns = new char[] {'(', ')'};
+            
             while (true)
             {
-                var pattern = @"\([\d\s\*\+]+\)";
+                var pattern = @"\([\d\s\+\*]+\)";
                 var regEx = new Regex(pattern);
-                var bracketExpressions = regEx.Matches(input);
+                var parenthesisExpressions = regEx.Matches(simplifiedString);
 
-                if (bracketExpressions.Count <= 0)
+                if (parenthesisExpressions.Count == 0) break;
+
+                foreach (Match parenthesisExpression in parenthesisExpressions)
                 {
-                    break;
-                }
+                    var highOderResult = 0;
+                    var highOrderExpressions = ParseAddMultiply(parenthesisExpression.Value.Trim(bracketSigns));
+                    foreach (var highOrderExpression in highOrderExpressions)
+                    {
+                        highOderResult += highOrderExpression.Evaluate();
+                    }
 
-                var delimiters = new char[] {'(', ')'};
-
-
-                foreach (Match expression in bracketExpressions)
-                {
-                    var braketResult = MixedOperation(expression.Value.Trim(delimiters)).ToString();
-                    input = input.Replace(expression.Value, braketResult);
+                    simplifiedString = simplifiedString.Replace(parenthesisExpression.Value, highOderResult.ToString());
                 }
             }
 
-            return input;
+            return simplifiedString;
         }
 
-        private int MixedOperation(string input)
+        private static List<IExpr> ParseAddMultiply(string input)
         {
-            var addExpressions = input.Split("+");
-            var elements = new List<string>();
-            var result = 0;
-            foreach (var expression in addExpressions)
+            var addMultiplyExpressions = new List<IExpr>();
+            
+            if (input.Contains("+") ||
+                input.Contains("*"))
             {
-                if (!expression.Contains("*"))
+                // var addElements = new List<Add>();
+                // var multElements = new List<Multiply>();
+
+                var addStringExpressions = input.Split("+");
+                foreach (var addStringExpression in addStringExpressions)
                 {
-                    elements.Add(expression);
-                    continue;
+                    if (addStringExpression.Contains("*"))
+                    {
+                        var multStringExpressions = addStringExpression.Split("*");
+                        var multExpressions = multStringExpressions.Select(x => new Elem(x));
+                        addMultiplyExpressions.Add(new Multiply(multExpressions));
+                    }
+                    else
+                    {
+                        var addExpression = new Elem(addStringExpression);
+                        addMultiplyExpressions.Add(new Add(addExpression));
+                    }
                 }
-
-                var multiplyExpressions = expression.Split("*");
-                result += Multiply(multiplyExpressions.Select(x => new Elem(x)));
             }
 
-            return result + Add(elements.Select(x => new Elem(x)));
-        }
-
-        private int Multiply(IEnumerable<Elem> elements)
-        {
-            var result = 1;
-            foreach (var element in elements)
-            {
-                result *= element.Number;
-            }
-            return result;
-        }
-
-        private static int Add(IEnumerable<Elem> elements)
-        {
-            var result = 0;
-            foreach (var element in elements)
-            {
-                result += element.Number;
-            }
-            return result;
+            return addMultiplyExpressions;
         }
     }
 }

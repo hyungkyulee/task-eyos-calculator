@@ -83,9 +83,6 @@ namespace ExpressionEvaluator.Domains
             if (input.Contains("+") ||
                 input.Contains("*"))
             {
-                // var addElements = new List<Add>();
-                // var multElements = new List<Multiply>();
-
                 var addStringExpressions = input.Split("+");
                 foreach (var addStringExpression in addStringExpressions)
                 {

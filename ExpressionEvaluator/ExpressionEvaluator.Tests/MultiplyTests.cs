@@ -18,7 +18,6 @@ namespace ExpressionEvaluator.Tests
         public void Should_evaluate_multiply_operation()
         {
             // arrange
-            // _evaluator = new Evaluator();
             var input = "1 *2*3 * 4 *5";
 
             // act

@@ -48,11 +48,9 @@ namespace ExpressionEvaluator.Tests
             
             // act
             var result = _evaluator.Handle(input);
-            // var example4 = _evaluator.Handle("((1+2+1)*(1+1))");
 
             // assert
             Assert.That(result, Is.EqualTo(38));
-            // Assert.That(example4, Is.EqualTo(8));
         }
     }
 }

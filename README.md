@@ -34,17 +34,17 @@ To make things easier:
 ## instruction updated
 Consider the following change to the take-home exercise, namely allowing a variable “x”:
 
-ELEM = x | 0 | 1 | 2 ... 9 | 10 | 11 ...
-ADD = ( EXPR + EXPR + ... + EXPR )
-MULT = ( EXPR * EXPR * ... * EXPR )
-EXPR = ELEM | ADD | MULT
+- ELEM = x | 0 | 1 | 2 ... 9 | 10 | 11 ...
+- ADD = ( EXPR + EXPR + ... + EXPR )
+- MULT = ( EXPR * EXPR * ... * EXPR )
+- EXPR = ELEM | ADD | MULT
 
 For example:
-1 -> 1
-x -> x
-(x+1) -> (x+1)
-(1+(2*x)+1) -> ((2*x)+2)
-((1+(2*x)+1)*(x+1)) -> ((2*x^2)+(4*x)+2)
+- 1 -> 1
+- x -> x
+- (x+1) -> (x+1)
+- (1+(2*x)+1) -> ((2*x)+2)
+- ((1+(2*x)+1)*(x+1)) -> ((2*x^2)+(4*x)+2)
 
 Other than the addition of the variable “x” the task is the same as the original take-home exercise.
 

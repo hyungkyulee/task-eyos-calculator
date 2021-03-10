@@ -24,7 +24,7 @@ namespace ExpressionEvaluator.Tests
             var result = _evaluator.Handle(input);
 
             // assert
-            Assert.That(result, Is.EqualTo(120));
+            Assert.That(result, Is.EqualTo("120"));
         }
     }
 }

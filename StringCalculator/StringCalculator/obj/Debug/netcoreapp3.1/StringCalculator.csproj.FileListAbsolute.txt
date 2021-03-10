@@ -1,0 +1,12 @@
+/Users/albert/_ref/interview/StringCalculator/StringCalculator/bin/Debug/netcoreapp3.1/StringCalculator.deps.json
+/Users/albert/_ref/interview/StringCalculator/StringCalculator/bin/Debug/netcoreapp3.1/StringCalculator.runtimeconfig.json
+/Users/albert/_ref/interview/StringCalculator/StringCalculator/bin/Debug/netcoreapp3.1/StringCalculator.runtimeconfig.dev.json
+/Users/albert/_ref/interview/StringCalculator/StringCalculator/bin/Debug/netcoreapp3.1/StringCalculator.dll
+/Users/albert/_ref/interview/StringCalculator/StringCalculator/bin/Debug/netcoreapp3.1/StringCalculator.pdb
+/Users/albert/_ref/interview/StringCalculator/StringCalculator/obj/Debug/netcoreapp3.1/StringCalculator.csprojAssemblyReference.cache
+/Users/albert/_ref/interview/StringCalculator/StringCalculator/obj/Debug/netcoreapp3.1/StringCalculator.AssemblyInfoInputs.cache
+/Users/albert/_ref/interview/StringCalculator/StringCalculator/obj/Debug/netcoreapp3.1/StringCalculator.AssemblyInfo.cs
+/Users/albert/_ref/interview/StringCalculator/StringCalculator/obj/Debug/netcoreapp3.1/StringCalculator.csproj.CoreCompileInputs.cache
+/Users/albert/_ref/interview/StringCalculator/StringCalculator/obj/Debug/netcoreapp3.1/StringCalculator.dll
+/Users/albert/_ref/interview/StringCalculator/StringCalculator/obj/Debug/netcoreapp3.1/StringCalculator.pdb
+/Users/albert/_ref/interview/StringCalculator/StringCalculator/obj/Debug/netcoreapp3.1/StringCalculator.genruntimeconfig.cache

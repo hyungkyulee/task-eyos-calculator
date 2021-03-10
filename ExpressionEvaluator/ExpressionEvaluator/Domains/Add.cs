@@ -24,5 +24,10 @@ namespace ExpressionEvaluator.Domains
             }
             return result;
         }
+
+        public string EvaluateVariable()
+        {
+            return "";
+        }
     }
 }

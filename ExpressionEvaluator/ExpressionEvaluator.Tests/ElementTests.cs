@@ -19,7 +19,7 @@ namespace ExpressionEvaluator.Tests
         {
             var result = _evaluator.Handle("1");
             
-            Assert.That(result, Is.EqualTo(1));
+            Assert.That(result, Is.EqualTo("1"));
         }
         
         [Test]
@@ -27,7 +27,7 @@ namespace ExpressionEvaluator.Tests
         {
             var result = _evaluator.Handle("11");
             
-            Assert.That(result, Is.EqualTo(11));
+            Assert.That(result, Is.EqualTo("11"));
         }
     }
 }

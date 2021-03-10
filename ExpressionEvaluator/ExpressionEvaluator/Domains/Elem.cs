@@ -13,8 +13,8 @@ namespace ExpressionEvaluator.Domains
             {
                 totalNumber += ParseNumber(cleanedInput[i]) * (int)Math.Pow(10, cleanedInput.Length-i-1);
             }
-
-            Number = totalNumber;
+            
+            Number = totalNumber;    
         }
 
         private static int ParseNumber(char input)
@@ -60,6 +60,10 @@ namespace ExpressionEvaluator.Domains
         public int Evaluate()
         {
             return Number;
+        }
+        public string EvaluateVariable()
+        {
+            return "";
         }
     }
 }

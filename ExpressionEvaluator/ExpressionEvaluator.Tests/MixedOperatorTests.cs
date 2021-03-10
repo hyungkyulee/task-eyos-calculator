@@ -24,7 +24,7 @@ namespace ExpressionEvaluator.Tests
             var result = _evaluator.Handle(input);
 
             // assert
-            Assert.That(result, Is.EqualTo(11));
+            Assert.That(result, Is.EqualTo("11"));
         }
         
         [Test]
@@ -37,7 +37,7 @@ namespace ExpressionEvaluator.Tests
             var result = _evaluator.Handle(input);
 
             // assert
-            Assert.That(result, Is.EqualTo(7));
+            Assert.That(result, Is.EqualTo("7"));
         }
         
         [Test]
@@ -50,7 +50,7 @@ namespace ExpressionEvaluator.Tests
             var result = _evaluator.Handle(input);
 
             // assert
-            Assert.That(result, Is.EqualTo(38));
+            Assert.That(result, Is.EqualTo("38"));
         }
     }
 }

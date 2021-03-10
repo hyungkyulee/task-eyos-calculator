@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -7,16 +8,34 @@ namespace ExpressionEvaluator.Domains
 {
     public class Evaluator
     {
-        public int Handle(string input)
+        public string Handle(string input)
         {
-            var expressions = ParseExpr(input);
-            var result = 0;
+            var expressions = new List<IExpr>();
+            var pattern = $"[a-zA-Z]+";
+            var regEx = new Regex(pattern);
+            var matches =  regEx.Matches(input);
+            
+            if(matches.Count > 0)
+            {
+                var variables = matches.Select(x => new Variable(x.Value));
+                expressions.AddRange(variables);
+            }
+
+            string result = "";
             foreach (var expression in expressions)
             {
-                result += expression.Evaluate();
+                result += expression.EvaluateVariable();
             }
 
             return result;
+            // expressions.AddRange(ParseExpr(input));
+            // var result = 0;
+            // foreach (var expression in expressions)
+            // {
+            //     result += expression.Evaluate();
+            // }
+            //
+            // return result.ToString();
         }
 
         private IEnumerable<IExpr> ParseExpr(string input)
@@ -31,11 +50,9 @@ namespace ExpressionEvaluator.Domains
             }
             
             if (!inputSimplified.Contains("+") &&
-                !inputSimplified.Contains("*") &&
-                !inputSimplified.Contains("(") &&
-                !inputSimplified.Contains(")"))
+                !inputSimplified.Contains("*") )
             {
-                expressions.Add(new Elem(inputSimplified));
+                expressions.Add(new Elem(inputSimplified));   
             }
 
             if (input.Contains("+") ||
@@ -101,6 +118,26 @@ namespace ExpressionEvaluator.Domains
             }
 
             return addMultiplyExpressions;
+        }
+    }
+
+    internal class Variable : IExpr
+    {
+        private string SingleType { get; }
+        
+        public Variable(string singleType)
+        {
+            SingleType = singleType;
+        }
+
+        public int Evaluate()
+        {
+            return 0;
+        }
+
+        public string EvaluateVariable()
+        {
+            return SingleType;
         }
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WB39Lktvmpe/0t48pIhNC20bgunTojjBi0HVY6nny5HyLuX+wUCkIp2t6/rfugVpBSXAnKi9TEgLcMYI/vkPkw==",
+  "dgSpecHash": "G7J6jd7v01IPVBeD3RvFRPstOa2vo/7Vm/V/hwryBW1XEgu3ZBMhwsY2t2FkEgdMwEse1ND9Wwvz1a1PGq1lcw==",
   "success": true,
-  "projectFilePath": "/Users/albert/_ref/interview/StringCalculator/StringCalculator/StringCalculator.csproj",
+  "projectFilePath": "/Users/albert/_ref/interview/task-eyos-evaluator/StringCalculator/StringCalculator/StringCalculator.csproj",
   "expectedPackageFiles": [
     "/Users/albert/.nuget/packages/microsoft.aspnetcore.app.ref/3.1.10/microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
   ],

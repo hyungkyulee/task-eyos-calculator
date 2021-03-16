@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vGmmvP71iRrr2W7F0Gn0IIu7b4aScZwH6plGofi/14vrsvs+Vvk0ObZWb6rBjF4Pw1Q4eyUX7Gvg1GplqQEJGg==",
+  "dgSpecHash": "B4ncgF9x1Yx6Qdk6rHvRG4EN4RmGNVP62HtJW/YoAqu2nKzihALqCsJVRRvnJbqTgmeay2k9HCuexHLweKUyGg==",
   "success": true,
-  "projectFilePath": "/Users/albert/_ref/interview/StringCalculator/StringCalculator.Tests/StringCalculator.Tests.csproj",
+  "projectFilePath": "/Users/albert/_ref/interview/task-eyos-evaluator/StringCalculator/StringCalculator.Tests/StringCalculator.Tests.csproj",
   "expectedPackageFiles": [
     "/Users/albert/.nuget/packages/microsoft.codecoverage/16.4.0/microsoft.codecoverage.16.4.0.nupkg.sha512",
     "/Users/albert/.nuget/packages/microsoft.csharp/4.0.1/microsoft.csharp.4.0.1.nupkg.sha512",

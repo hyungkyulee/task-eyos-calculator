@@ -98,6 +98,34 @@ namespace StringCalculator.Tests
             // assert
             Assert.That(result, Is.EqualTo("6x^2+2x"));
         }
+        
+        [Test]
+        public void Should_handle_multiply_mono_mono()
+        {
+            // arrange
+            var input = "5x";
+            var monomial = new Monomial(input);
+
+            // act
+            var result = monomial.DoMultiply(new Monomial("3x")).Evaluate();
+
+            // assert
+            Assert.That(result, Is.EqualTo("15x^2"));
+        }
+        
+        [Test]
+        public void Should_handle_multiply_b_a()
+        {
+            // arrange
+            var input = "ba";
+            var monomial = new Monomial(input);
+
+            // act
+            var result = monomial.DoMultiply(new Monomial("a")).Evaluate();
+
+            // assert
+            Assert.That(result, Is.EqualTo("ab"));
+        }
 
     }
 }

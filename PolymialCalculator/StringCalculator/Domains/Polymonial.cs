@@ -49,6 +49,23 @@ namespace StringCalculator.Domains
         
         public Polymonial(IEnumerable<Monomial> monomials)
         {
+            var sortedMonomials = new List<Monomial>();
+
+            var highPower = 0;
+            foreach (var monomial in monomials)
+            {
+                var variables = monomial.Elements.Select(v => new Variable(v.Evaluate()));
+                
+                foreach (var variable in variables)
+                {
+                    if (highPower < variable._power)
+                    {
+                        highPower = variable._power;
+                    }
+                }
+
+            }
+            
             _monomials.AddRange(monomials);
         }
 

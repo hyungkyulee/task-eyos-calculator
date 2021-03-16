@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.VisualBasic;
 
 namespace StringCalculator.Domains
 {
@@ -23,8 +24,8 @@ namespace StringCalculator.Domains
             // x
             // 23x 
             // 4x^2
-            // 2x^3y^4
-            
+            // 2x^3y^4 => val = 2, variable[0] = x^3, var[1] = y^4
+
             // (x + 2) * (2x + y) => (var + num) * (var + var) => 
 
             var valuePattern = @"[\d]+(?=[a-z]+\^)?";
@@ -49,14 +50,19 @@ namespace StringCalculator.Domains
 
         public string Evaluate()
         {
-            return $"{string.Join("", _variables.Select(v => v.Evaluate()))}";
+            var output = $"{string.Join("", _variables.OrderBy(x => x._base).Select(v => v.Evaluate()))}";
+
+            // var result = output.OrderBy(x => x);
+            
+            
+            return output;
         }
 
         public IElement DoAdd(IElement element)
         {
             if (element.GetType() == typeof(Monomial))
             {
-                // 2x + 3y
+                // 2x + 3y vs 2x + 3x
                 var pattern = @"(?<=[\d])?[a-z]+[\^]?[\d]?";
 
                 var leftMono = new Regex(pattern).Match(this.Evaluate());
@@ -80,6 +86,54 @@ namespace StringCalculator.Domains
 
         public IElement DoMultiply(IElement element)
         {
+            if (element.GetType() == typeof(Monomial))
+            {
+                // mono * polymonial = e.g. 2x*(3x+1)
+                var resultMonomials = new List<Monomial>();
+                
+                // this monomial x monomials of poly
+                var variablePattern = @"(?<=[\d])?[a-z]+";
+                var pureMonomial = new Regex(variablePattern).Match(this.Evaluate());
+                // var leftVariables = Elements.Select(e => new Variable(e.Evaluate()));
+                
+                var leftVariables = new List<Variable>();
+                foreach (var e in Elements)
+                {
+                    leftVariables.Add(new Variable(e.Evaluate()));
+                }
+                // var rightVariables = element.Elements.Select(e => new Variable(e.Evaluate()));
+                var rightVariables = new List<Variable>();
+                foreach (var e in element.Elements)
+                {
+                    rightVariables.Add(new Variable(e.Evaluate()));
+                }
+                
+                var newVariables = new List<Variable>();
+                newVariables.AddRange(leftVariables);
+                newVariables.AddRange(rightVariables);
+                
+                foreach (var leftVariable in leftVariables)
+                {
+                    foreach (var rightVariable in rightVariables)
+                    {
+                        if (leftVariable._base == rightVariable._base)
+                        {
+                            var sameVariables = new List<Variable>(); 
+                            sameVariables.Add(new Variable(leftVariable.Value * rightVariable.Value,
+                                leftVariable._base,
+                                leftVariable._power + rightVariable._power));
+                            newVariables.Remove(leftVariable);
+                            newVariables.Remove(rightVariable);
+                            newVariables.Add(sameVariables.Last());
+                        }
+                    }
+                }
+                
+                resultMonomials.Add(new Monomial(string.Join("", newVariables.Select(v => v.Evaluate()))));
+
+                return new Monomial(resultMonomials.First().Evaluate());
+            }
+            
             if (element.GetType() == typeof(Polymonial))
             {
                 // mono * polymonial = e.g. 2x*(3x+1)
@@ -129,6 +183,7 @@ namespace StringCalculator.Domains
                 }
                 
                 resultMonomials.Add(new Monomial(string.Join("", newVariables.Select(v => v.Evaluate()))));
+
                 return new Polymonial(resultMonomials);
 
                 // foreach (var variable in element.Elements)

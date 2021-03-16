@@ -4650,11 +4650,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/albert/_ref/interview/StringCalculator/StringCalculator.Tests/StringCalculator.Tests.csproj",
+      "projectUniqueName": "/Users/albert/_ref/interview/task-eyos-evaluator/StringCalculator/StringCalculator.Tests/StringCalculator.Tests.csproj",
       "projectName": "StringCalculator.Tests",
-      "projectPath": "/Users/albert/_ref/interview/StringCalculator/StringCalculator.Tests/StringCalculator.Tests.csproj",
+      "projectPath": "/Users/albert/_ref/interview/task-eyos-evaluator/StringCalculator/StringCalculator.Tests/StringCalculator.Tests.csproj",
       "packagesPath": "/Users/albert/.nuget/packages/",
-      "outputPath": "/Users/albert/_ref/interview/StringCalculator/StringCalculator.Tests/obj/",
+      "outputPath": "/Users/albert/_ref/interview/task-eyos-evaluator/StringCalculator/StringCalculator.Tests/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
@@ -4672,8 +4672,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "/Users/albert/_ref/interview/StringCalculator/StringCalculator/StringCalculator.csproj": {
-              "projectPath": "/Users/albert/_ref/interview/StringCalculator/StringCalculator/StringCalculator.csproj"
+            "/Users/albert/_ref/interview/task-eyos-evaluator/StringCalculator/StringCalculator/StringCalculator.csproj": {
+              "projectPath": "/Users/albert/_ref/interview/task-eyos-evaluator/StringCalculator/StringCalculator/StringCalculator.csproj"
             }
           }
         }

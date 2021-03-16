@@ -17,7 +17,8 @@ namespace StringCalculator.Domains
 
         public IEnumerable<IElement> Elements
         {
-            get => new[] {new Variable(_value, _base, _power)};
+            // get => new[] {this};
+            get => null;
         }
 
         public Variable(string element)
@@ -28,7 +29,15 @@ namespace StringCalculator.Domains
             
             if(!int.TryParse(new Regex(valuePattern).Match(element).ToString(), out _value) && element != string.Empty) _value = 1;
             _base = new Regex(variablePattern).Match(element).ToString();
-            _power = int.Parse(new Regex(powerPattern).Match(element).ToString());
+            var power = new Regex(powerPattern).Match(element);
+            if (power.Length > 0)
+            {
+                _power = int.Parse(power.ToString());
+            }
+            else
+            {
+                _power = 1;
+            }
         }
         public Variable(int value, string varBase, int power)
         {

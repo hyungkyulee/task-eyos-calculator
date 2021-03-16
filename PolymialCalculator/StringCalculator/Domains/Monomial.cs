@@ -83,35 +83,60 @@ namespace StringCalculator.Domains
             if (element.GetType() == typeof(Polymonial))
             {
                 // mono * polymonial = e.g. 2x*(3x+1)
+                var resultMonomials = new List<Monomial>();
                 
-                // number of poly * mono
+                // number of poly * this monomial
                 var number = new Number(element.Value);
+                var tempResult = number.DoMultiply(new Monomial(this.Evaluate())).Evaluate();
+                resultMonomials.Add(new Monomial(tempResult));
                 
-                var result1 = number.DoMultiply(new Monomial(this.Evaluate())).Evaluate();
-                
+                // this monomial x monomials of poly
                 var variablePattern = @"(?<=[\d])?[a-z]+";
-
-                foreach (var variable in element.Elements)
+                var pureMonomial = new Regex(variablePattern).Match(this.Evaluate());
+                // var leftVariables = Elements.Select(e => new Variable(e.Evaluate()));
+                
+                var leftVariables = new List<Variable>();
+                foreach (var e in Elements)
                 {
-                    var matchVariable = new Regex(variablePattern).Match(variable.Evaluate());
-                    Elements.Where(e => e.Evaluate().Contains(matchVariable.ToString()));
+                    leftVariables.Add(new Variable(e.Evaluate()));
+                }
+                // var rightVariables = element.Elements.Select(e => new Variable(e.Evaluate()));
+                var rightVariables = new List<Variable>();
+                foreach (var e in element.Elements)
+                {
+                    rightVariables.Add(new Variable(e.Evaluate()));
                 }
                 
+                var newVariables = new List<Variable>();
+                newVariables.AddRange(leftVariables);
+                newVariables.AddRange(rightVariables);
                 
+                foreach (var leftVariable in leftVariables)
+                {
+                    foreach (var rightVariable in rightVariables)
+                    {
+                        if (leftVariable._base == rightVariable._base)
+                        {
+                            var sameVariables = new List<Variable>(); 
+                            sameVariables.Add(new Variable(leftVariable.Value * rightVariable.Value,
+                                leftVariable._base,
+                                leftVariable._power + rightVariable._power));
+                            newVariables.Remove(leftVariable);
+                            newVariables.Remove(rightVariable);
+                            newVariables.Add(sameVariables.Last());
+                        }
+                    }
+                }
                 
-                
-                // mono of poly * mono
-                // var number = _number * element.Value;
-                // var monomials = element.Elements.Select(e => new Monomial(e.Evaluate()));
-                //
-                // var updatedMonos = new List<Monomial>();
-                // foreach (var monomial in monomials)
+                resultMonomials.Add(new Monomial(string.Join("", newVariables.Select(v => v.Evaluate()))));
+                return new Polymonial(resultMonomials);
+
+                // foreach (var variable in element.Elements)
                 // {
-                //     var result = this.DoMultiply(monomial);
-                //     updatedMonos.Add(new Monomial(result.Evaluate()));
+                //     var matchVariable = new Regex(variablePattern).Match(variable.Evaluate());
+                //     Elements.Where(e => e.Evaluate().Contains(matchVariable.ToString()));
                 // }
-                //
-                // return new Polymonial(new Number(number), updatedMonos);
+
             }
 
             return null;
